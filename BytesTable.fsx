@@ -11,7 +11,7 @@ module BytesTable =
 
 
             sb.AppendFormat("{0:x2}", c) |> ignore
-            if i % 16 = 8 then sb.Append ' ' |> ignore
+            if i % 16 = 7 then sb.Append ' ' |> ignore
             elif i % 16 = 15 then
                 sb.Append "    " |> ignore
                 for i = i - 15 to i do
