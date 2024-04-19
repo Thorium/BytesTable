@@ -2,8 +2,10 @@
 module BytesTable =
 
     let getBytesTable (bytes : byte array) = 
+        let maxLen = if bytes.LongLength > 1048576L then 1048576 else bytes.Length
         let sb = System.Text.StringBuilder ()
         bytes 
+        |> Array.take maxLen
         |> Array.iteri (fun i c -> 
             if i % 16 = 0 then 
                 if i > 0 then sb.AppendLine () |> ignore
@@ -20,7 +22,7 @@ module BytesTable =
                     else '\183' 
                     |> sb.Append
                     |> ignore
-            if i + 1 < bytes.Length then sb.Append ' ' |> ignore
+            if i + 1 < maxLen then sb.Append ' ' |> ignore
         )
 
         sb.ToString ()    
